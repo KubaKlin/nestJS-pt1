@@ -12,7 +12,7 @@ export class EmployeesService {
   }
 
   getById(id: number) {
-    const employee = this.employees.find(employee => employee.id === id);
+    const employee = this.employees.find((employee) => employee.id === id);
 
     if (!employee) {
       throw new NotFoundException();
@@ -24,15 +24,15 @@ export class EmployeesService {
   create(employee: EmployeeDto) {
     const newEmployee = {
       id: this.nextCreatedEmployeeId++,
-      ...employee
-    }
+      ...employee,
+    };
     this.employees.push(newEmployee);
     return newEmployee;
   }
 
   update(id: number, employee: EmployeeDto) {
     const employeeIndex = this.employees.findIndex(
-      employee => employee.id === id
+      (employee) => employee.id === id,
     );
 
     if (employeeIndex === -1) {
@@ -43,13 +43,13 @@ export class EmployeesService {
       ...this.employees[employeeIndex],
       name: employee.name,
       position: employee.position,
-    }
+    };
     return this.employees[employeeIndex];
   }
 
   delete(id: number) {
     const employeeIndex = this.employees.findIndex(
-      employee => employee.id === id
+      (employee) => employee.id === id,
     );
 
     if (employeeIndex === -1) {

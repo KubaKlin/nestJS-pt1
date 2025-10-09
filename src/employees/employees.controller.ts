@@ -1,11 +1,19 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import * as employeeDto from './employee.dto';
 
 @Controller('employees')
 export class EmployeesController {
-  constructor(private readonly employeesService: EmployeesService) {
-  }
+  constructor(private readonly employeesService: EmployeesService) {}
 
   @Post()
   create(@Body() employee: employeeDto.EmployeeDto) {
@@ -25,7 +33,7 @@ export class EmployeesController {
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() employee: employeeDto.EmployeeDto
+    @Body() employee: employeeDto.EmployeeDto,
   ) {
     return this.employeesService.update(id, employee);
   }
